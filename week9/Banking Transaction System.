@@ -1,3 +1,23 @@
+Problem Description
+Design classes for bank accounts supporting deposit and withdrawal operations.
+Input Format
+•	First line contains integer N.
+•	Next N lines contain operations.
+Output Format
+Display final balance.
+Sample Input
+3
+Deposit 5000
+Withdraw 2000
+Deposit 1000
+Sample Output
+4000
+
+
+
+
+
+Solution:
 import java.util.*;
 
 class BankAccount {
