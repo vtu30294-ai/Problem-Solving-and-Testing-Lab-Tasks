@@ -1,0 +1,25 @@
+Question 6: Find All Unique Items Purchased
+
+Scenario: 
+A customer purchases several items, including repeated items. Write a Java program using a LinkedHashSet to display only unique items in the order they were purchased.
+
+
+
+
+Solution:
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        LinkedHashSet<String> items = new LinkedHashSet<>();
+
+        items.add("Apple");
+        items.add("Milk");
+        items.add("Bread");
+        items.add("Apple");
+        items.add("Milk");
+        items.add("Rice");
+
+        System.out.println("Unique Items: " + items);
+    }
+}
