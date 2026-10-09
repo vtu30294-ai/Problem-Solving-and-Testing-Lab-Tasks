@@ -1,0 +1,61 @@
+Question: 2 - Student Marks Management System
+
+A teacher wants to create a Java program to store the marks of students in a class. The number of students is not known in advance, so the program should use a dynamic array. The teacher can add marks one by one, and the array should automatically increase its size when it becomes full.
+
+
+
+
+Solution:
+import java.util.*;
+
+class Product {
+    int id;
+    String name;
+    double price;
+
+    Product(int id, String name, double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public String toString() {
+        return id + " " + name + " Rs." + price;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Product> products = new ArrayList<>();
+        HashMap<Integer, Product> search = new HashMap<>();
+
+        PriorityQueue<String> orders = new PriorityQueue<>();
+
+        Product p1 = new Product(101, "Laptop", 50000);
+        Product p2 = new Product(102, "Mobile", 20000);
+        Product p3 = new Product(103, "Headphones", 1500);
+
+        products.add(p1);
+        products.add(p2);
+        products.add(p3);
+
+        search.put(p1.id, p1);
+        search.put(p2.id, p2);
+        search.put(p3.id, p3);
+
+        System.out.println("Products:");
+        for (Product p : products)
+            System.out.println(p);
+
+        System.out.println("\nSearch Product ID 102:");
+        System.out.println(search.get(102));
+
+        orders.add("3-Low Priority Order");
+        orders.add("1-High Priority Order");
+        orders.add("2-Medium Priority Order");
+
+        System.out.println("\nProcessing Orders:");
+        while (!orders.isEmpty())
+            System.out.println(orders.poll());
+    }
+}
