@@ -1,0 +1,43 @@
+Question: 5 - Music Playlist — Singly Linked List
+Scenario
+A music application maintains songs in a playlist. Users can add songs to the playlist and remove a song when they no longer want it.
+Question
+Implement a linked list playlist that supports:
+1.	Adding songs. 
+2.	Removing a song. 
+3.	Displaying the playlist.
+
+
+
+
+Solution:
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Integer> marks = new ArrayList<>();
+
+        System.out.println("Enter marks (-1 to stop):");
+
+        while (true) {
+            int m = sc.nextInt();
+            if (m == -1)
+                break;
+            marks.add(m);
+        }
+
+        System.out.println("Marks: " + marks);
+
+        int max = Collections.max(marks);
+        double sum = 0;
+
+        for (int m : marks)
+            sum += m;
+
+        System.out.println("Highest Mark: " + max);
+        System.out.println("Average: " + sum / marks.size());
+
+        sc.close();
+    }
+}
