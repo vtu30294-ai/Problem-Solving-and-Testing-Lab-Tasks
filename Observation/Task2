@@ -1,0 +1,63 @@
+Task 2 (Difficult): Real-Time Stream Analytics Engine
+Problem Description
+A cloud analytics platform receives millions of sensor readings. Each reading contains a sensor ID and temperature value. Using stream processing concepts, perform the following operations:
+1.	Filter temperatures greater than 50.
+2.	Group readings by sensor ID.
+3.	Compute average temperature per sensor.
+4.	Sort sensors based on average temperature in descending order.
+Input Format
+•	First line contains integer N.
+•	Next N lines contain SensorID and Temperature.
+Output Format
+Display SensorID and average temperature sorted in descending order.
+Constraints
+•	1 ≤ N ≤ 10^5
+•	0 ≤ Temperature ≤ 100
+Sample Input
+6
+S1 60
+S2 40
+S1 80
+S3 70
+S2 90
+S3 30
+Sample Output
+S1 70.0
+S2 90.0
+S3 70.0
+
+
+
+
+Solution:
+import java.util.*;
+
+public class Task2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        Map<String, List<Integer>> map = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            String id = sc.next();
+            int temp = sc.nextInt();
+
+            if (temp > 50)
+                map.computeIfAbsent(id, k -> new ArrayList<>()).add(temp);
+        }
+
+        List<String> sensors = new ArrayList<>(map.keySet());
+
+        sensors.sort((a, b) -> {
+            double avgA = map.get(a).stream().mapToInt(x -> x).average().getAsDouble();
+            double avgB = map.get(b).stream().mapToInt(x -> x).average().getAsDouble();
+            return Double.compare(avgB, avgA);
+        });
+
+        for (String id : sensors) {
+            double avg = map.get(id).stream().mapToInt(x -> x).average().getAsDouble();
+            System.out.println(id + " " + avg);
+        }
+    }
+}
