@@ -1,0 +1,67 @@
+Task 10 (Difficult): Secure Authentication Stress Testing
+Problem Description
+Develop automated test cases for a login system supporting:
+•	Boundary value testing
+•	Exception testing
+•	Timeout testing
+•	Parameterized testing
+•	Edge case validation
+The system should validate thousands of login attempts efficiently.
+Input Format
+•	First line contains integer N.
+•	Next N lines contain username and password.
+Output Format
+Display SUCCESS or FAILURE for each login.
+Constraints
+•	1 ≤ N ≤ 10^5
+•	Username length: 3–20
+•	Password length: 6–20
+Sample Input
+3
+admin admin123
+ab 123
+user pass
+Sample Output
+SUCCESS
+FAILURE
+FAILURE
+
+
+
+Solution:
+import java.util.*;
+
+public class Task10 {
+
+    static String login(String username, String password) {
+        if (username.length() < 3 || username.length() > 20)
+            return "FAILURE";
+
+        if (password.length() < 6 || password.length() > 20)
+            return "FAILURE";
+        
+        if (username.equals("admin") &&
+            password.equals("admin123")) {
+            return "SUCCESS";
+        }
+
+        return "FAILURE";
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+
+            String username = sc.next();
+            String password = sc.next();
+
+            System.out.println(login(username, password));
+        }
+
+        sc.close();
+    }
+}
