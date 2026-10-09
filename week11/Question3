@@ -1,0 +1,41 @@
+QUESTION 3 – DEGREE OF ARRAY
+Inspired by HackerRank
+Problem
+Given a non-empty array of non-negative integers nums, the degree of this array is defined as the maximum frequency of any one of its elements.
+Your task is to find the smallest possible length of a (contiguous) subarray of nums, that has the same degree as nums.
+
+
+
+Solution:
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 2, 3, 1};
+
+        HashMap<Integer, Integer> freq = new HashMap<>();
+        HashMap<Integer, Integer> first = new HashMap<>();
+        HashMap<Integer, Integer> last = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            freq.put(nums[i], freq.getOrDefault(nums[i], 0) + 1);
+            first.putIfAbsent(nums[i], i);
+            last.put(nums[i], i);
+        }
+
+        int degree = 0, minLength = nums.length;
+
+        for (int key : freq.keySet()) {
+            degree = Math.max(degree, freq.get(key));
+        }
+
+        for (int key : freq.keySet()) {
+            if (freq.get(key) == degree) {
+                minLength = Math.min(minLength,
+                        last.get(key) - first.get(key) + 1);
+            }
+        }
+
+        System.out.println("Smallest Subarray Length: " + minLength);
+    }
+}
