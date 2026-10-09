@@ -1,0 +1,48 @@
+Task 9 (Easy): Calculator Unit Testing
+Problem Description
+Write unit tests for calculator operations including addition and division.
+Input Format
+Arithmetic expression.
+Output Format
+Display test result.
+Sample Input
+10 + 20
+Sample Output
+Test Passed
+
+
+
+
+Solution:
+public class Task9 {
+
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    static double divide(int a, int b) {
+        if (b == 0)
+            throw new ArithmeticException("Cannot divide by zero");
+
+        return (double) a / b;
+    }
+
+    public static void main(String[] args) {
+
+        // Addition test
+        if (add(10, 20) == 30) {
+            System.out.println("Addition Test Passed");
+        } else {
+            System.out.println("Addition Test Failed");
+        }
+
+        // Division test
+        if (divide(20, 10) == 2.0) {
+            System.out.println("Division Test Passed");
+        } else {
+            System.out.println("Division Test Failed");
+        }
+
+        System.out.println("Test Passed");
+    }
+}
