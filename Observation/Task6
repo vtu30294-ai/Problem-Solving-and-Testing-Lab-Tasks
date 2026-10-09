@@ -1,0 +1,119 @@
+Task 6 (Difficult): Ride Sharing Platform Simulator
+Problem Description
+Design an object-oriented ride sharing system with reusable classes for Driver, Rider, Vehicle, and Trip. Support polymorphic fare calculation for Bike, Auto, and Cab rides. Include exception handling for invalid bookings.
+Input Format
+•	First line contains integer N.
+•	Next N lines contain ride type and distance.
+Output Format
+Display fare for each trip.
+Constraints
+•	1 ≤ N ≤ 10^5
+Sample Input
+3
+Bike 10
+Cab 15
+Auto 8
+Sample Output
+50
+180
+96
+
+
+
+
+Solution:
+import java.util.*;
+
+class Driver {
+    String name;
+    Driver(String name) {
+        this.name = name;
+    }
+}
+
+class Rider {
+    String name;
+    Rider(String name) {
+        this.name = name;
+    }
+}
+
+class Vehicle {
+    String number;
+    Vehicle(String number) {
+        this.number = number;
+    }
+}
+
+abstract class Trip {
+    double distance;
+
+    Trip(double distance) {
+        if (distance <= 0)
+            throw new IllegalArgumentException("Invalid distance");
+        this.distance = distance;
+    }
+
+    abstract double fare();
+}
+
+class Bike extends Trip {
+    Bike(double d) {
+        super(d);
+    }
+
+    double fare() {
+        return distance * 5;
+    }
+}
+
+class Auto extends Trip {
+    Auto(double d) {
+        super(d);
+    }
+
+    double fare() {
+        return distance * 12;
+    }
+}
+
+class Cab extends Trip {
+    Cab(double d) {
+        super(d);
+    }
+
+    double fare() {
+        return distance * 12;
+    }
+}
+
+public class Task6 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            String type = sc.next();
+            double distance = sc.nextDouble();
+
+            try {
+                Trip trip;
+
+                if (type.equalsIgnoreCase("Bike"))
+                    trip = new Bike(distance);
+                else if (type.equalsIgnoreCase("Auto"))
+                    trip = new Auto(distance);
+                else if (type.equalsIgnoreCase("Cab"))
+                    trip = new Cab(distance);
+                else
+                    throw new IllegalArgumentException("Invalid ride type");
+
+                System.out.println((int) trip.fare());
+
+            } catch (Exception e) {
+                System.out.println("Invalid Booking");
+            }
+        }
+    }
+}
