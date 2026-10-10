@@ -1,0 +1,36 @@
+Question 1 – Hashtag Frequency Counter
+Problem
+A social media platform receives N hashtags. Count the frequency of each hashtag and display the hashtags along with their frequencies.
+If multiple hashtags have the same frequency, display them in lexicographical order.
+
+
+
+Solution:
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        TreeMap<String, Integer> map = new TreeMap<>();
+
+        for (int i = 0; i < n; i++) {
+            String hashtag = sc.next();
+            map.put(hashtag, map.getOrDefault(hashtag, 0) + 1);
+        }
+
+        List<String> list = new ArrayList<>(map.keySet());
+
+        list.sort((a, b) -> {
+            int cmp = map.get(b).compareTo(map.get(a));
+            return cmp == 0 ? a.compareTo(b) : cmp;
+        });
+
+        for (String hashtag : list) {
+            System.out.println(hashtag + " " + map.get(hashtag));
+        }
+
+        sc.close();
+    }
+}
